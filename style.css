@@ -543,122 +543,117 @@ html
 
 
 
+/* --- 1. إصلاح عام لمنع خروج الصور عن إطار الشاشة --- */
 * {
     box-sizing: border-box;
 }
-
-
 img {
     max-width: 100%;
     height: auto;
 }
 
-
+/* --- 2. الميديا كويري الشاملة (النسخة النهائية المقفلة) --- */
 @media screen and (max-width: 900px) {
+    /* --- ضبط الحاوية الرئيسية --- */
     .max-width {
-        padding: 0 30px !important; 
+        padding: 0 20px !important;
+        width: 100% !important;
     }
-    .menu-btn {
-        display: block;
-        z-index: 99;
-    }
-    .menu-btn i.active:before {
-        content: "\f00d";
-    }
+
+    /* --- القائمة الجانبية (Navbar) --- */
+    .menu-btn { display: block; z-index: 99; }
+    .menu-btn i.active:before { content: "\f00d"; }
     .navbar .menu {
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        left: -100%;
-        top: 0;
-        background: #111;
-        text-align: center;
-        padding-top: 80px;
-        transition: left 0.3s ease;
+        position: fixed; height: 100vh; width: 100%;
+        left: -100%; top: 0; background: #111;
+        text-align: center; padding-top: 80px; transition: 0.3s;
     }
-    .navbar .menu.active {
-        left: 0;
-    }
-    .navbar .menu li {
-        display: block;
-    }
-    .navbar .menu li a {
-        display: inline-block;
-        margin: 15px 0;
-        font-size: 22px;
-    } 
+    .navbar .menu.active { left: 0; }
+    .navbar .menu li { display: block; }
+    .navbar .menu li a { display: inline-block; margin: 20px 0; font-size: 25px; } 
 
-    
+    /* === 1. إصلاح قسم البداية (Home) === */
     .home {
-        display: flex;
-        flex-direction: column !important; 
-        align-items: center;
-        justify-content: flex-end;
-        text-align: center;
-        background-attachment: scroll !important; 
-        height: 100vh;
+        flex-direction: column !important;
+        justify-content: center !important;
+        background-attachment: scroll !important;
     }
-    
-    
-    .home img {
-        display: none !important; 
-    }
-    
-    
-    .home .max-width {
-        margin: 0 auto;
-        width: 90%;
-        margin-bottom: 50px; 
-    }
+    .home img { display: none !important; } /* إخفاء صورتك نهائياً من الموبايل */
+    .home .max-width { margin: 0 auto !important; }
     .home .home-content {
-        background-color: rgba(0,0,0,0.6); 
-        padding: 30px;
+        background-color: rgba(0,0,0,0.7); /* خلفية سوداء شفافة للنص */
+        padding: 40px 20px !important;
         border-radius: 10px;
-        width: 100%;
-        margin: 0;
+        width: 100% !important;
+        text-align: center;
     }
-    .home .home-content .text-2 {
-        font-size: 40px !important; 
-        margin: 10px 0 !important;
-        line-height: 1.1;
+    .home .home-content .text-2 { 
+        font-size: 32px !important; /* تصغير اسمك */
+        margin: 10px 0 !important; 
+        line-height: 1.2; 
     }
-    .home .home-content .text-3 {
-        font-size: 25px;
-    }
-    .home .home-content a {
-        font-size: 18px;
-        padding: 10px 25px;
-        margin-top: 15px;
+    .home .home-content .text-3 { font-size: 20px !important; }
+    /* إجبار كلمة Full-Stack Developer تنزل في سطر لوحدها بشكل شيك */
+    .home .home-content .text-3 span { 
+        display: block; 
+        margin-top: 8px; 
+        color: crimson; 
+        font-size: 24px !important; 
     }
 
-    
+    /* === 2. إصلاح مشكلة النص المزنوق (Snake Text) في كل الأقسام === */
     .about .about-content,
     .skills .skills-content,
-    .contact .contact-content {
-        flex-direction: column !important; 
+    .contact .contact-content,
+    .services .services-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    /* إجبار كل الأعمدة على أخذ الشاشة كاملة 100% بالقوة */
     .about .about-content .column,
-    .skills .skills-content .column,
-    .contact .contact-content .column {
-        width: 100% !important;
-        margin-bottom: 30px;
-        text-align: center !important; 
-    }
+    .about .about-content .left,
     .about .about-content .right,
-    .skills .skills-content .left {
-        text-align: center !important; 
-    }
-    .about .about-content .right .text,
-    .skills .skills-content .left .text {
-        font-size: 20px;
-    }
-    .about .about-content .right a {
-        font-size: 18px;
-        padding: 10px 20px;
-    }
-    .about .about-content .left img {
+    .skills .skills-content .column,
+    .skills .skills-content .left,
+    .skills .skills-content .right,
+    .contact .contact-content .column,
+    .contact .contact-content .left,
+    .contact .contact-content .right {
         width: 100% !important;
-        max-width: 300px; 
-        height: auto;
+        max-width: 100% !important;
+        flex: 100% !important;
+        text-align: center !important; /* توسيط إجباري */
+        margin-bottom: 30px !important;
     }
-}
+
+    /* توسيط صورتك في قسم About */
+    .about .about-content .left img {
+        width: 250px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    /* === 3. إصلاح تداخل الكروت في قسم الخدمات (Services) === */
+    .services .services-content .card {
+        width: 100% !important; /* الكارت ياخد عرض الشاشة */
+        margin-bottom: 20px !important;
+        height: auto !important; /* السماح للكارت بالتمدد بالطول */
+        padding: 30px 20px !important;
+    }
+
+    /* === 4. إصلاح قسم التواصل وتوسيط النصوص === */
+    .contact .contact-content .row {
+        justify-content: center !important; /* توسيط أيقونات الاتصال */
+    }
+    .skills .skills-content .left p,
+    .contact .contact-content .left p,
+    .about .about-content .right p {
+        text-align: center !important; /* توسيط البراجرافات */
+        font-size: 16px !important;
+        line-height: 1.6;
+    }
+    
+    /* تصغير العناوين الرئيسية لتناسب الموبايل */
+    .section .title { font-size: 30px !important; margin-bottom: 40px !important; }
 }
