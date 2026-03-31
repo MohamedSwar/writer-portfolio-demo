@@ -552,7 +552,7 @@ img {
     height: auto;
 }
 
-/* --- 2. الميديا كويري الشاملة (النسخة النهائية المقفلة) --- */
+/* --- 2. الميديا كويري الشاملة (النسخة النهائية) --- */
 @media screen and (max-width: 900px) {
     /* --- ضبط الحاوية الرئيسية --- */
     .max-width {
@@ -572,28 +572,30 @@ img {
     .navbar .menu li { display: block; }
     .navbar .menu li a { display: inline-block; margin: 20px 0; font-size: 25px; } 
 
-    /* === 1. إصلاح قسم البداية (Home) === */
+    /* === 1. إصلاح قسم البداية (Home) وإزالة الفراغ الأسود === */
     .home {
         flex-direction: column !important;
         justify-content: center !important;
+        height: auto !important; /* إلغاء الـ 100vh عشان الفراغ الأسود يختفي */
+        min-height: auto !important;
+        padding: 150px 0 80px 0 !important; /* هوامش علوية وسفلية بدل الارتفاع الثابت */
         background-attachment: scroll !important;
     }
-    .home img { display: none !important; } /* إخفاء صورتك نهائياً من الموبايل */
+    .home img { display: none !important; } 
     .home .max-width { margin: 0 auto !important; }
     .home .home-content {
-        background-color: rgba(0,0,0,0.7); /* خلفية سوداء شفافة للنص */
+        background-color: rgba(0,0,0,0.7); 
         padding: 40px 20px !important;
         border-radius: 10px;
         width: 100% !important;
-        text-align: center;
+        text-align: left !important; /* محاذاة للشمال */
     }
     .home .home-content .text-2 { 
-        font-size: 32px !important; /* تصغير اسمك */
+        font-size: 32px !important; 
         margin: 10px 0 !important; 
         line-height: 1.2; 
     }
     .home .home-content .text-3 { font-size: 20px !important; }
-    /* إجبار كلمة Full-Stack Developer تنزل في سطر لوحدها بشكل شيك */
     .home .home-content .text-3 span { 
         display: block; 
         margin-top: 8px; 
@@ -601,7 +603,7 @@ img {
         font-size: 24px !important; 
     }
 
-    /* === 2. إصلاح مشكلة النص المزنوق (Snake Text) في كل الأقسام === */
+    /* === 2. إصلاح النصوص والتنسيق (Left & Justify) === */
     .about .about-content,
     .skills .skills-content,
     .contact .contact-content,
@@ -610,7 +612,6 @@ img {
         flex-direction: column !important;
     }
     
-    /* إجبار كل الأعمدة على أخذ الشاشة كاملة 100% بالقوة */
     .about .about-content .column,
     .about .about-content .left,
     .about .about-content .right,
@@ -623,37 +624,41 @@ img {
         width: 100% !important;
         max-width: 100% !important;
         flex: 100% !important;
-        text-align: center !important; /* توسيط إجباري */
+        text-align: left !important; /* محاذاة العناوين للشمال */
         margin-bottom: 30px !important;
     }
 
-    /* توسيط صورتك في قسم About */
-    .about .about-content .left img {
-        width: 250px !important;
-        margin: 0 auto !important;
-        display: block !important;
-    }
-
-    /* === 3. إصلاح تداخل الكروت في قسم الخدمات (Services) === */
-    .services .services-content .card {
-        width: 100% !important; /* الكارت ياخد عرض الشاشة */
-        margin-bottom: 20px !important;
-        height: auto !important; /* السماح للكارت بالتمدد بالطول */
-        padding: 30px 20px !important;
-    }
-
-    /* === 4. إصلاح قسم التواصل وتوسيط النصوص === */
-    .contact .contact-content .row {
-        justify-content: center !important; /* توسيط أيقونات الاتصال */
-    }
+    /* إجبار البراجرافات على الـ Justify */
     .skills .skills-content .left p,
     .contact .contact-content .left p,
     .about .about-content .right p {
-        text-align: center !important; /* توسيط البراجرافات */
+        text-align: justify !important; /* مساواة حواف السطور */
         font-size: 16px !important;
         line-height: 1.6;
     }
+
+    /* === 3. إصلاح صورتك في قسم About (منع القص) === */
+    .about .about-content .left img {
+        width: 100% !important;
+        max-width: 300px !important;
+        height: auto !important;
+        object-fit: contain !important; /* إلغاء الـ Cover عشان الصورة تظهر كاملة */
+        margin: 0 auto 20px auto !important; /* توسيط الصورة نفسها */
+        display: block !important;
+        border-radius: 10px; /* لمسة جمالية للحواف */
+    }
+
+    /* === 4. إصلاح كروت الخدمات وتوسيط أيقونات الاتصال === */
+    .services .services-content .card {
+        width: 100% !important; 
+        margin-bottom: 20px !important;
+        height: auto !important; 
+        padding: 30px 20px !important;
+    }
+    .contact .contact-content .row {
+        justify-content: flex-start !important; /* محاذاة أيقونات الاتصال للشمال */
+    }
     
-    /* تصغير العناوين الرئيسية لتناسب الموبايل */
+    /* تصغير العناوين الرئيسية */
     .section .title { font-size: 30px !important; margin-bottom: 40px !important; }
 }
